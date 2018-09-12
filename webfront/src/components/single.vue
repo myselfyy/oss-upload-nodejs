@@ -18,6 +18,7 @@
     methods: {
       uploadfile () {
         const file = document.getElementById('upload').files[0]
+        // const name = file.name
         getPolicy().then((res) => {
           const fd = new FormData()
           const {OSSAccessKeyId, host, policy, signature, startsWith, saveName} = res.data.data
@@ -25,7 +26,7 @@
           fd.append('OSSAccessKeyId', OSSAccessKeyId)
           fd.append('policy', policy)
           fd.append('signature', signature)
-          fd.append('key', startsWith + saveName)
+          fd.append('key', startsWith + 'test')
           fd.append('success_action_status', 200)
           fd.append('file', file, saveName)
           const xhr = new XMLHttpRequest()
@@ -40,7 +41,7 @@
               return
             }
             if (e.target.status === 200) {
-              this.imgUrl = host + '/' + startsWith + saveName
+              this.imgUrl = host + '/' + startsWith + 'test'
             }
           }, false)
           xhr.send(fd)
@@ -55,13 +56,13 @@
   }
   .imgDiv {
     margin: 50px auto;
-    width:220px;    
+    width:220px;
     height:220px;
     border-radius: 6px;
     border: 2px dotted darkgrey;
   }
   .img {
-    width:220px;    
+    width:220px;
     height:220px;
     border-radius: 6px;
   }
